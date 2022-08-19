@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "cbtest"
+
+# You can add fixtures and/or initialization code here to make experimenting
+# with your gem easier. You can also use a different console, if you like.
+
+# (If you use this, don't forget to add pry to your Gemfile!)
+# require "pry"
+# Pry.start
+
+require "irb"
+
+def wallet
+  @wallet ||= Cbtest::Wallet.new
+end
+
+def w
+  wallet
+end
+
+def client
+  wallet.client
+end
+
+def account
+  wallet.account
+end
+
+def btc_amount
+  wallet.btc_amount
+end
+
+def btc_price
+  wallet.btc_price
+end
+
+def fiat_balance
+  wallet.fiat_balance
+end
+
+def last_transaction
+  wallet.last_transaction
+end
+
+def buy_btc(amount)
+  wallet.buy_btc(amount)
+end
+
+def btc_receive_address
+  wallet.btc_receive_address
+end
+
+def h
+  puts "wallet"
+  puts "wallet.payment_methods"
+  puts "wallet.buys"
+  puts "wallet.transactions"
+  puts "wallet.btc_price"
+  puts "client"
+  puts "account"
+  puts "btc_amount"
+  puts "btc_price"
+  puts "fiat_balance"
+  puts "btc_receive_address # => get the btc wallet address to send money to (copied to clipboard)"
+  puts "buy_btc(0.001) # => buy this amount of BTC"
+
+end
+
+puts "you have this amount of EURO: #{fiat_balance}"
+puts "you have this amount of BTC: #{btc_amount}"
+puts "the price of 1 BTC: #{btc_price}"
+
+IRB.start(__FILE__)
